@@ -1,0 +1,43 @@
+Technology used:
+html, css, js, do not use css framework such as bootstrap, tailwind
+
+The web is in traditional chinese for Hong Kong
+
+Project directory = home/jackieng/tour-web
+image directory = home/jackieng/tour-web/img
+js directory = home/jackieng/tour-web/js
+
+Function Spec
+Referring to file in attachment ref_*,  write a web system introducing 4 tourist location
+each location contain a main photo and 10 other photos. The photos are provided by web owner.
+
+The naming conventions of the photos are tour1-01.jpeg (main photo), 
+tour1-022.jpeg are second photo etc. The second sites are tour2-01.jpeg, etc.
+
+
+When user press to select one of the tour, goto another html page and display the other photo in lightbox. 
+Also long description and positive comment should be at the bottom.
+
+
+Each location including a title of around 10 Chinese character, a brief description of around 30 Chinese Character and 
+long description of around 200 Chinese Character. Grok should search on the web to
+fill determine the best wording
+
+The service section should be after the selected tours section.
+
+The background of the hero pages should used the first photo of four tour. It will be shown 5 seconds for each and fade out.
+
+Responsive design
+
+add the following at footer
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/+85265335789" class="whatsapp-logo" target="_blank" rel="noopener noreferrer">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp我們">
+</a>
+
+The four locations are: 
+tour1 - Shanghai LegoLand
+tour2 - Tokyo Disney Ocean 
+tour3 - Souel Sky
+tour4 - Studio City Water Park
+
