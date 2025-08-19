@@ -8,11 +8,11 @@ image directory = home/jackieng/tour-web/img
 js directory = home/jackieng/tour-web/js
 
 Function Spec
-Referring to file in attachment ref_*,  write a web system introducing 4 tourist location
+write a web system introducing 4 tourist location
 each location contain a main photo and 10 other photos. The photos are provided by web owner.
 
-The naming conventions of the photos are tour1-01.jpeg (main photo), 
-tour1-022.jpeg are second photo etc. The second sites are tour2-01.jpeg, etc.
+The naming conventions of the photos are tour1-01.jpg (main photo), 
+tour1-022.jpg are second photo etc. The second sites are tour2-01.jpg, etc.
 
 
 When user press to select one of the tour, goto another html page and display the other photo in lightbox. 

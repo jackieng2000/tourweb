@@ -138,44 +138,54 @@ span {
 .navbar .mobile-menu-items {
   position: absolute;
   top: var(--nav-height);
-  bottom: 0;
   left: 0;
-  width: 25%;
-  text-align: center;
-  transition: var(--transition);
-  transform: translateX(600%);
-  z-index: 1;
+  width: 100%;
+  height: auto;
+  min-height: 320px; /* Increased for full item visibility */
+  background: var(--primary-5);
+  opacity: 1;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out; 
+  z-index: 15; /* Below hero and sections */
+  overflow-y: auto;
+  /* visibility: hidden; */
+   visibility: visible;
+}
+
+.navbar .mobile-menu-items.active {
+  transform: translateX(0);
+  visibility: visible;
 }
 
 .navbar .mobile-menu-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: var(--nav-height);
-  gap: 2rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1rem 2rem;
+  margin: 0;
   font-size: 1.2rem;
-  margin-block: 0;
-  background: var(--primary-8);
-  opacity: 0.7;
-  li {
-    border-bottom: 1px solid var(--primary-5);
-    padding-bottom: 1rem;
-    a {
-      color: var(--primary-white);
-    }
-  }
-  li:last-child {
-    border-bottom: 0;
-  }
+}
+
+.navbar .mobile-menu-list li {
+  padding: 0.75rem 0;
+  width: 100%;
+  border-bottom: 1px solid var(--primary-3);
+}
+
+.navbar .mobile-menu-list li:last-child {
+  border-bottom: none;
+}
+
+.navbar .mobile-menu-list a {
+  color: var(--primary-white);
+  text-decoration: none;
 }
 
 .navbar .mobile-menu-toggle {
   cursor: pointer;
-}
-
-.navbar .mobile-menu-items.active {
-  transform: translateX(300%);
-  z-index: 2;
+  color: var(--primary-4);
+  font-size: 1.5rem;
 }
 
 .navbar .mobile-menu {
@@ -183,18 +193,18 @@ span {
 }
 
 @media (max-width: 768px) {
-  .navbar {
-    .main-menu,
-    .icon-menu {
-      display: none;
-    }
+  .navbar .main-menu, .navbar .icon-menu {
+    display: none;
   }
   .navbar .mobile-menu {
     display: block;
-    a {
-      color: var(--primary-white);
-    }
   }
+}
+
+
+/* Ensure content is pushed under menu */
+body.menu-active .hero {
+  margin-top: calc(var(--nav-height) + 320px); /* Push below menu when active */
 }
 
 /* Hero */
@@ -207,13 +217,18 @@ span {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  position: relative;
+  z-index: 1;
+  /* position: relative; */
 }
 
 .hero {
   color: var(--primary-white);
-  position: relative;
   text-align: center;
+  z-index: 20;
+  margin-top: var(--nav-height); /* Default: just below navbar */
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
   p {
     font-size: 1.5rem;
     padding: 1rem;
@@ -270,8 +285,8 @@ span {
 .about,
 .services,
 .tours {
-  padding-top: var(--nav-height);
-  margin-bottom: 4rem;
+ z-index: 20;
+  position: relative;
 }
 
 .about-content {
@@ -431,47 +446,105 @@ span {
 .tours {
   padding: 2rem;
 }
-
 .cards {
   width: 100%;
+  max-width: 1100px; /* Constrain grid width, consistent with .hero .container */
+  margin: 0 auto; /* Center the grid */
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* Three equal columns */
   gap: 2rem;
-  align-items: start;
+  align-items: stretch; /* Ensure uniform height */
   justify-content: center;
 }
 
 .card {
   box-shadow: var(--dark-shadow);
+  display: flex;
+  flex-direction: column;
+  max-width: 350px; /* Cap card width to ensure consistency */
 }
+
 .card:hover {
   transform: scale(1.03);
   transition: var(--transition);
 }
-.card-img {
-  position: relative;
+
+.card-img img {
+  height: 200px;
+  object-fit: cover;
 }
 .card-content {
   background: var(--primary-9);
   padding: 1.5rem 2rem 0.5rem;
+  min-height: 150px; /* Ensures uniform height */
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  justify-content: space-between; /* Push link to bottom */
   p {
     font-size: 1rem;
     color: var(--primary-7);
   }
   a {
     color: var(--primary-5);
-    text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1rem;
+  text-transform: uppercase;
+  align-self: flex-start; /* Align link to left */
+  margin-top: auto; /* Push link to bottom */
   }
 }
-@media (max-width: 799px) and (min-width: 577px) {
+/* Responsive adjustments */
+@media (max-width: 991px) and (min-width: 577px) {
   .cards {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two columns */
+    justify-content: center;
+  }
+  .card {
+    max-width: 400px; /* Slightly larger for two-column layout */
   }
 }
+
 @media (max-width: 576px) {
   .cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* One column */
   }
+  .card {
+    max-width: 100%; /* Full width for small screens */
+  }
+  .card-img img {
+    height: 150px;
+  }
+  .card-content {
+    min-height: 120px;
+  }
+}
+
+.card-actions {
+  display: flex;
+  gap: 1rem; /* Space between links */
+  align-items: center; /* Vertically align links */
+  align-self: flex-start; /* Left-justify the container */
+}
+
+.details-link, .purchase-link {
+  color: var(--primary-5);
+  text-decoration: none;
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+}
+
+.details-link:hover, .purchase-link:hover {
+  color: var(--primary-white);
+  background-color: var(--primary-3);
+  transition: var(--transition);
+}
+
+.purchase-link {
+  background-color: var(--primary-7);
+  color: var(--primary-white);
 }
 /* footer */
 .footer {
