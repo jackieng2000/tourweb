@@ -110,7 +110,7 @@ span {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 5;
   box-shadow: var(--dark-shadow);
 }
 
@@ -136,56 +136,53 @@ span {
 }
 
 .navbar .mobile-menu-items {
+  /* border: 2px solid red; */
   position: absolute;
   top: var(--nav-height);
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: auto;
-  min-height: 320px; /* Increased for full item visibility */
-  background: var(--primary-5);
-  opacity: 1;
+  width: 25%;
+  background: var(--primary-white);
+  text-align: center;
+  transition: var(--transition);
   transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out; 
-  z-index: 15; /* Below hero and sections */
-  overflow-y: auto;
-  /* visibility: hidden; */
-   visibility: visible;
-}
-
-.navbar .mobile-menu-items.active {
-  transform: translateX(0);
-  visibility: visible;
+  visibility: hidden;
+  z-index: 1;
 }
 
 .navbar .mobile-menu-list {
+  /* border: 2px solid blue; */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 1rem 2rem;
-  margin: 0;
+  align-items: center;
+  /* height: 100%; */
+  padding-top: var(--nav-height);
+  gap: 2rem;
   font-size: 1.2rem;
-}
-
-.navbar .mobile-menu-list li {
-  padding: 0.75rem 0;
-  width: 100%;
-  border-bottom: 1px solid var(--primary-3);
-}
-
-.navbar .mobile-menu-list li:last-child {
-  border-bottom: none;
-}
-
-.navbar .mobile-menu-list a {
-  color: var(--primary-white);
-  text-decoration: none;
+  margin-block: 0;
+  background: var(--primary-8);
+  opacity: 0.7;
+  li {
+    border-bottom: 1px solid var(--primary-5);
+     /* border: 2px solid yellow; */
+    padding-bottom: 1rem;
+    a {
+      color: var(--primary-white);
+    }
+  }
+  li:last-child {
+    border-bottom: 0;
+  }
 }
 
 .navbar .mobile-menu-toggle {
   cursor: pointer;
-  color: var(--primary-4);
-  font-size: 1.5rem;
+}
+
+.navbar .mobile-menu-items.active {
+  transform: translateX(300%);
+  transition: 1s ease-in-out;
+  visibility: visible;
 }
 
 .navbar .mobile-menu {
@@ -193,22 +190,29 @@ span {
 }
 
 @media (max-width: 768px) {
-  .navbar .main-menu, .navbar .icon-menu {
-    display: none;
+  .navbar {
+    .main-menu,
+    .icon-menu {
+      display: none;
+    }
   }
   .navbar .mobile-menu {
     display: block;
+    a {
+      color: var(--primary-white);
+    }
+  }
+  .navbar .mobile-menu-items.active{
+    transform: translateX(300%);
+    visibility: visible;
   }
 }
 
-
-/* Ensure content is pushed under menu */
 body.menu-active .hero {
-  margin-top: calc(var(--nav-height) + 320px); /* Push below menu when active */
+  margin-top: calc(var(--nav-height) ); 
 }
 
 /* Hero */
-
 .hero .container {
   max-width: 1100px;
   margin: var(--nav-height) auto 0;
@@ -217,7 +221,7 @@ body.menu-active .hero {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  z-index: 1;
+
   /* position: relative; */
 }
 
@@ -225,7 +229,7 @@ body.menu-active .hero {
   color: var(--primary-white);
   text-align: center;
   z-index: 20;
-  margin-top: var(--nav-height); /* Default: just below navbar */
+  margin-top: var(--nav-height);
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -285,8 +289,9 @@ body.menu-active .hero {
 .about,
 .services,
 .tours {
- z-index: 20;
-  position: relative;
+  padding-top: var(--nav-height);
+  margin-bottom: 4rem;
+  z-index: 20;
 }
 
 .about-content {

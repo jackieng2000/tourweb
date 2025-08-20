@@ -14,9 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const toggleButton = document.querySelector(".navbar .mobile-menu-toggle");
       const mobileMenu = document.querySelector(".navbar .mobile-menu-items");
       if (toggleButton && mobileMenu) {
-        // Set initial state explicitly
-        mobileMenu.style.transform = "translateX(-100%)";
-        mobileMenu.style.visibility = "hidden";
+        mobileMenu.style.transform = "translateX(300%)";
+        // mobileMenu.style.visibility = "hidden";
         toggleButton.addEventListener("click", () => {
           mobileMenu.classList.toggle("active");
           document.body.classList.toggle("menu-active");

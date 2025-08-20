@@ -29,3 +29,4 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("%cError: No .gallery img elements found", "text-align: center; padding: 10px; background: #f8d7da; color: #721c24; border: 1px solid #721c24;");
   }
 });
+
